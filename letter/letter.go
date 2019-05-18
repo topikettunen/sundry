@@ -36,6 +36,8 @@ func ReadLetters() map[string]string {
 		log.Fatalf("failed opening file: %s", err)
 	}
 
+	defer file.Close()
+
 	scanner := bufio.NewScanner(file)
 	scanner.Split(bufio.ScanLines)
 
@@ -60,8 +62,6 @@ func ReadLetters() map[string]string {
 			singleLetterArt.WriteRune('\n')
 		}
 	}
-
-	file.Close()
 
 	return asciiArtLetters
 }
