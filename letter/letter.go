@@ -13,9 +13,22 @@ const (
 )
 
 func ReadLetters() map[string]string {
-	path, err := filepath.Abs("letter/letters.txt")
+	var path string
+	wd, err := os.Getwd()
 	if err != nil {
-		log.Fatalf("failed representing fullpath : %s", err)
+		log.Fatalf("failed getting working dir: %s", err)
+	}
+
+	if strings.Contains(wd, "letter") {
+		path, err = filepath.Abs("letters.txt")
+		if err != nil {
+			log.Fatalf("failed representing fullpath : %s", err)
+		}
+	} else {
+		path, err = filepath.Abs("letter/letters.txt")
+		if err != nil {
+			log.Fatalf("failed representing fullpath : %s", err)
+		}
 	}
 
 	file, err := os.Open(path)
