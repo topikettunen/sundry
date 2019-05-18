@@ -8,7 +8,9 @@ import (
 	"strings"
 )
 
-const alphabets = "abcdefghijklmnopqrstuvwxyz"
+const (
+	alphabets = "abcdefghijklmnopqrstuvwxyz"
+)
 
 func ReadLetters() map[string]string {
 	path, err := filepath.Abs("letter/letters.txt")
@@ -49,4 +51,14 @@ func ReadLetters() map[string]string {
 	file.Close()
 
 	return asciiArtLetters
+}
+
+func SplitLetters(word string, letters map[string]string) [][]string {
+	var splitLetters [][]string
+
+	for _, e := range word {
+		splitLetters = append(splitLetters, strings.Split(letters[string(e)], "\n"))
+	}
+
+	return splitLetters
 }
