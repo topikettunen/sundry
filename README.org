@@ -1,8 +1,17 @@
-* Serendipitous-Vocable 
+* serendipitous-vocable 
+
+Shh... nothing to see here yet...
+
+Simple application that generates various writing exercises based on words fetched from Wordnik API.
+Another idea in here is to test to create CLI and SPA web application written purely in Common Lisp.
 
 ** Usage
 
+TODO
+
 ** Installation
+
+TODO
 
 ** Author
 
