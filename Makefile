@@ -1,4 +1,4 @@
-LISP ?= sbcl
+LISP ?= /opt/sbcl/bin/sbcl
 
 build:
 	$(LISP) --load licenser.asd \
