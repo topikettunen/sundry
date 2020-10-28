@@ -5,7 +5,11 @@
 
 (defparameter +wordnik-word+ "https://api.wordnik.com/v4/word.json")
 (defparameter +wordnik-words+ "https://api.wordnik.com/v4/words.json")
-(defparameter +api-key+ (uiop:getenv "WORDNIK_API_KEY"))
+
+(defparameter *api-key* nil) 
+   
+(defun get-api-key ()
+  (uiop:getenv "WORDNIK_API_KEY"))
 
 ;;; TODO: These could be done in little bit more "cool" way
 (defun generate-random-word-url (root endpoint api-key part-of-speech)
@@ -16,28 +20,29 @@
   (let ((params "limit=200&includeRelated=false&useCanonical=false&includeTags=false"))
     (format nil "~a/~a?~a&api_key=~a" root endpoint params api-key)))
 
-(defun fetch-random-word (part-of-speech)
+(defun fetch-random-word (part-of-speech api-key)
   (let* ((url (generate-random-word-url +wordnik-words+
                                        "randomWord"
-                                       +api-key+
+                                       api-key
                                        part-of-speech))
          (response (dex:get url)))
     (jsown:val (jsown:parse response) "word")))
 
 ;;; TODO: This can return multiple definitions so parsing also the rest of them could be useful
-(defun fetch-word-definition (word)
+(defun fetch-word-definition (word api-key)
   (let* ((url (generate-word-definition-url +wordnik-word+
                                             (format nil "~a/definitions" word)
-                                            +api-key+))
+                                            api-key))
          (response (dex:get url)))
     (jsown:val (first (jsown:parse response)) "text")))
 
 (defun generate ()
-  (let ((noun (fetch-random-word "noun"))
-         (adjective (fetch-random-word "adjective")))
+  (setf api-key (get-api-key))
+  (let ((noun (fetch-random-word "noun" api-key))
+         (adjective (fetch-random-word "adjective" api-key)))
     (format t "Write small story based on this pair of randomly generated noun and adjective.~%~%")
     (format t "~C~a ~a~%~%" #\tab adjective noun)
-    (let ((noun-def (fetch-word-definition noun))
-          (adjective-def (fetch-word-definition adjective)))
+    (let ((noun-def (fetch-word-definition noun api-key))
+          (adjective-def (fetch-word-definition adjective api-key)))
       (format t "~a:~%~C~a~%~%" noun #\tab noun-def)
       (format t "~a:~%~C~a~%" adjective #\tab adjective-def))))
