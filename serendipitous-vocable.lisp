@@ -7,9 +7,6 @@
 (defparameter +wordnik-words+ "https://api.wordnik.com/v4/words.json")
 
 (defparameter *api-key* nil) 
-   
-(defun get-api-key ()
-  (uiop:getenv "WORDNIK_API_KEY"))
 
 ;;; TODO: These could be done in little bit more "cool" way. Also handle nil api-key.
 (defun generate-random-word-url (root endpoint part-of-speech)
