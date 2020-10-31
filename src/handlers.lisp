@@ -1,6 +1,10 @@
-(in-package :serendipitous-vocable)
-
-(defparameter *sv-acceptor* (make-instance 'hunchentoot:easy-acceptor :port 8080))
+(in-package :cl-user)
+(defpackage serendipitous-vocable.handlers
+  (:use :cl)
+  (:import-from :serendipitous-vocable.words
+                :fetch-random-word
+		:fetch-word-definition))
+(in-package :serendipitous-vocable.handlers)
 
 (setq cl-who:*attribute-quote-char* #\")
 
@@ -50,9 +54,3 @@
 		    (:p (:i (format *standard-output* "~a" noun)))
 		    (:h3 "Definitions")
 		    (:p (format *standard-output* "~a - ~a" noun noun-def))))))
-
-(defun start ()
-  (hunchentoot:start *sv-acceptor*))
-
-(defun stop ()
-  (hunchentoot:stop *sv-acceptor*))

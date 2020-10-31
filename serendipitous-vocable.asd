@@ -6,11 +6,12 @@
 	       :jsown
 	       :hunchentoot		; woo could be used here eventually
 	       :cl-who
-	       :parenscript
 	       :cl-fad)
   :components ((:module "src"
 		:components
-		((:file "main"))))
+		((:file "main")
+		 (:file "handlers" :depends-on ("words"))
+		 (:file "words"))))
   :description "Simple tool for generating writing exercises"
   :in-order-to ((test-op (test-op "serendipitous-vocable/tests"))))
 

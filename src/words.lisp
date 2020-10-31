@@ -1,14 +1,23 @@
-(in-package :serendipitous-vocable)
+(in-package :cl-user)
+(defpackage serendipitous-vocable.words
+  (:use :cl)
+  (:export :fetch-random-word
+	   :fetch-word-definition))
+(in-package :serendipitous-vocable.words)
 
-(defparameter +wordnik-word+ "https://api.wordnik.com/v4/word.json")
-(defparameter +wordnik-words+ "https://api.wordnik.com/v4/words.json")
+(defconstant +wordnik-word+ "https://api.wordnik.com/v4/word.json")
+(defconstant +wordnik-words+ "https://api.wordnik.com/v4/words.json")
+
+(defvar *api-key* (uiop:getenv "WORDNIK_API_KEY"))
 
 ;;; TODO: These could be done in little bit more "cool" way. Also handle nil api-key.
 (defun generate-random-word-url (root endpoint part-of-speech)
+  ;; Handle params better eventually.
   (let ((params "hasDictionaryDef=true&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1"))
     (format nil "~a/~a?~a&~a&api_key=~a" root endpoint part-of-speech params *api-key*)))
 
 (defun generate-word-definition-url (root endpoint)
+  ;; Handle params better eventually.
   (let ((params "limit=200&includeRelated=false&useCanonical=false&includeTags=false"))
     (format nil "~a/~a?~a&api_key=~a" root endpoint params *api-key*)))
 
