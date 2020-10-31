@@ -2,7 +2,6 @@
   :version "0.1.0"
   :author "Topi Kettunen"
   :license "MIT"
-  :nicknames "sv"
   :depends-on (:dexador
 	       :jsown
 	       :hunchentoot		; woo could be used here eventually
