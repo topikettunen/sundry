@@ -1,12 +1,7 @@
-(defpackage serendipitous-vocable
-   (:use :cl))
-
 (in-package :serendipitous-vocable)
 
 (defparameter +wordnik-word+ "https://api.wordnik.com/v4/word.json")
 (defparameter +wordnik-words+ "https://api.wordnik.com/v4/words.json")
-
-(defparameter *api-key* nil) 
 
 ;;; TODO: These could be done in little bit more "cool" way. Also handle nil api-key.
 (defun generate-random-word-url (root endpoint part-of-speech)
@@ -20,8 +15,8 @@
 (defun fetch-random-word (part-of-speech)
   (let* ((url (generate-random-word-url +wordnik-words+
                                        "randomWord"
-                                       *api-key*
-                                       part-of-speech))
+                                       part-of-speech
+				       *api-key*))
          (response (dex:get url)))
     (jsown:val (jsown:parse response) "word")))
 
@@ -33,13 +28,3 @@
          (response (dex:get url)))
     (jsown:val (first (jsown:parse response)) "text")))
 
-(defun generate ()
-  (setf *api-key* (uiop:getenv "WORDNIK_API_KEY"))
-  (let ((noun (fetch-random-word "noun" *api-key*))
-         (adjective (fetch-random-word "adjective" *api-key*)))
-    (format t "Write small story based on this pair of randomly generated noun and adjective.~%~%")
-    (format t "~C~a ~a~%~%" #\tab adjective noun)
-    (let ((noun-def (fetch-word-definition noun api-key))
-          (adjective-def (fetch-word-definition adjective api-key)))
-      (format t "~a:~%~C~a~%~%" noun #\tab noun-def)
-      (format t "~a:~%~C~a~%" adjective #\tab adjective-def))))
