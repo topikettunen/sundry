@@ -1,8 +1,8 @@
-(defpackage sv/tests/main
+(defpackage serendipitous-vocable/tests/main
   (:use :cl
         :serendipitous-vocable
         :rove))
-(in-package :sv/tests/main)
+(in-package :serendipitous-vocable/tests/main)
 
 ;; NOTE: To run this test file, execute `(asdf:test-system :serendipitous-vocable)' in your Lisp.
 
