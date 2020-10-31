@@ -50,4 +50,3 @@
 
 (defun stop ()
   (hunchentoot:stop *sv-acceptor*))
-
