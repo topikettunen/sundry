@@ -1,6 +1,6 @@
 (defpackage sv/tests/main
   (:use :cl
-        :sv
+        :serendipitous-vocable
         :rove))
 (in-package :sv/tests/main)
 
