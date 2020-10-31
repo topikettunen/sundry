@@ -15,7 +15,13 @@
 	     (:link :type "text/css" 
 		    :rel "stylesheet"
 		    :href "/style.css"))
-	    (:body ,@body)
+	    (:body
+	     (:nav
+	      (:li (:a :href "/"
+		       "Home"))
+	      (:li (:a :href "/object"
+		       "Object Writing")))
+	     ,@body)
 	    (:footer
 	     ;; made-with-lisp.jpg is found under Hunchentoot files
 	     (:img :src "img/made-with-lisp-logo.jpg")))))
@@ -34,7 +40,7 @@
 		    (:p (format *standard-output* "~a - ~a" adjective adjective-def))
 		    (:p (format *standard-output* "~a - ~a" noun noun-def))))))
 
-(hunchentoot:define-easy-handler (root :uri "/object") ()
+(hunchentoot:define-easy-handler (object :uri "/object") ()
   (let* ((noun (fetch-random-word "noun"))
 	 (noun-def (fetch-word-definition noun)))
     (standard-page (:title "Object Writing - Serendipituos Vocable")
