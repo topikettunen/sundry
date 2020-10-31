@@ -15,16 +15,13 @@
 (defun fetch-random-word (part-of-speech)
   (let* ((url (generate-random-word-url +wordnik-words+
                                        "randomWord"
-                                       part-of-speech
-				       *api-key*))
+                                       part-of-speech))
          (response (dex:get url)))
     (jsown:val (jsown:parse response) "word")))
 
 ;;; TODO: This can return multiple definitions so parsing also the rest of them could be useful
 (defun fetch-word-definition (word)
   (let* ((url (generate-word-definition-url +wordnik-word+
-                                            (format nil "~a/definitions" word)
-                                            *api-key*))
+                                            (format nil "~a/definitions" word)))
          (response (dex:get url)))
     (jsown:val (first (jsown:parse response)) "text")))
-
