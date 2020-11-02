@@ -8,7 +8,6 @@
                "envy"
                "cl-ppcre"
                "uiop"
-	       "datafly"
 	       "dexador"
 	       "jsown"
 
