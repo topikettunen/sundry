@@ -1,0 +1,13 @@
+{% extends "layouts/default.html" %}
+{% block title %}Object Writing - Serendipitous Vocable{% endblock %}
+{% block content %}
+<div id="main">
+  <h1>Object Writing</h1>
+
+  <p>Give yourself strict 10 min and write something about this random object.</p>
+  <p><i>{{ noun }}</i></p>
+
+  <h3>Definitions</h3>
+  <p>{{ noun }} - {{ noun-def }}</p>
+</div>
+{% endblock %}

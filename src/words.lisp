@@ -1,14 +1,17 @@
 (in-package :cl-user)
-(defpackage serendipitous-vocable.words
+(defpackage sv.words
   (:use :cl)
-  (:export :fetch-random-word
+  (:export :*api-key*
+           :fetch-random-word
 	   :fetch-word-definition))
-(in-package :serendipitous-vocable.words)
+(in-package :sv.words)
 
 (defconstant +wordnik-word+ "https://api.wordnik.com/v4/word.json")
 (defconstant +wordnik-words+ "https://api.wordnik.com/v4/words.json")
 
-(defvar *api-key* (uiop:getenv "WORDNIK_API_KEY"))
+(defvar *api-key* nil)
+
+(defun uri-query (params))
 
 ;;; TODO: These could be done in little bit more "cool" way. Also handle nil api-key.
 (defun generate-random-word-url (root endpoint part-of-speech)

@@ -1,16 +1,30 @@
 (in-package :cl-user)
-(defpackage serendipitous-vocable
+(defpackage sv
   (:use :cl)
+  (:import-from :sv.config
+                :config)
+  (:import-from :clack
+                :clackup)
   (:export :start
-	   :stop))
-(in-package :serendipitous-vocable)
+           :stop))
+(in-package :sv)
 
-;;; User configurable acceptor would be nice.
-(defparameter *sv-acceptor* (make-instance 'hunchentoot:easy-acceptor :port 8080))
+(defvar *appfile-path*
+  (asdf:system-relative-pathname :sv #P"app.lisp"))
 
-;;; Eventually start using clack.
-(defun start ()
-  (hunchentoot:start *sv-acceptor*))
+(defvar *handler* nil)
+
+(defun start (&rest args &key server port debug &allow-other-keys)
+  (declare (ignore server port debug))
+  (when *handler*
+    (restart-case (error "Server is already running.")
+      (restart-server ()
+        :report "Restart the server"
+        (stop))))
+  (setf *handler*
+        (apply #'clackup *appfile-path* args)))
 
 (defun stop ()
-  (hunchentoot:stop *sv-acceptor*))
+  (prog1
+      (clack:stop *handler*)
+    (setf *handler* nil)))

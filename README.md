@@ -1,26 +1,28 @@
-# serendipitous-vocable 
+# serendipitous-vocable
 
-Shh... nothing to see here yet...
-
-Simple application that generates various writing exercises based on words fetched from Wordnik API.
-Another idea in here is to test to create web application written purely in Common Lisp.
-
-## Usage
-
-TODO
+Simple web application for generating writing exercices powered by Common
+Lisp. Mainly done as a test for Common Lisp's capabilities in the web.
 
 ## Installation
 
-TODO
+``` common-lisp
+(ql:quickload :sv)
+
+(setf sv.words:*api-key* "YOUR_WORDNIK_API_KEY")
+
+(sv:start :port 8080)
+```
+
+When finished:
+
+``` common-lisp
+(sv:stop)
+```
 
 ## Author
 
-+ Topi Kettunen (topi@kettunen.io)
+* Topi Kettunen
 
 ## Copyright
 
-Copyright (c) 2020 Topi Kettunen (topi@kettunen.io)
-
-## License
-
-Licensed under the MIT License.
+Copyright (c) 2020 Topi Kettunen
