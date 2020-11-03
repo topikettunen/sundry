@@ -10,19 +10,22 @@
 (defconstant +wordnik-words+ "https://api.wordnik.com/v4/words.json")
 
 (defvar *api-key* nil)
+(defvar *random-word-params* "hasDictionaryDef=true&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1")
+(defvar *word-definition-params* "limit=200&includeRelated=false&useCanonical=false&includeTags=false")
 
-(defun uri-query (params))
 
 ;;; TODO: These could be done in little bit more "cool" way. Also handle nil api-key.
 (defun generate-random-word-url (root endpoint part-of-speech)
-  ;; Handle params better eventually.
-  (let ((params "hasDictionaryDef=true&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=-1"))
-    (format nil "~a/~a?~a&~a&api_key=~a" root endpoint part-of-speech params *api-key*)))
+  (if (not *api-key*)
+      (let ((params *random-word-params*))
+	(format nil "~a/~a?~a&~a&api_key=~a" root endpoint part-of-speech params *api-key*))
+      (format t nil "Oops... sv.words:*api-key* not set...")))
 
 (defun generate-word-definition-url (root endpoint)
-  ;; Handle params better eventually.
-  (let ((params "limit=200&includeRelated=false&useCanonical=false&includeTags=false"))
-    (format nil "~a/~a?~a&api_key=~a" root endpoint params *api-key*)))
+  (if (not *api-key*)
+      (let ((params *word-definition-params*))
+	(format nil "~a/~a?~a&api_key=~a" root endpoint params *api-key*))
+      (format t nil "Oops... sv.words:*api-key* not set...")))
 
 (defun fetch-random-word (part-of-speech)
   (let* ((url (generate-random-word-url +wordnik-words+
