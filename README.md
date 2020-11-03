@@ -1,6 +1,6 @@
 # serendipitous-vocable
 
-Simple web application for generating writing exercices powered by Common
+Simple web application for generating writing exercises powered by Common
 Lisp. Mainly done as a test for Common Lisp's capabilities in the web.
 
 ## Installation
