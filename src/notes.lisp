@@ -67,15 +67,12 @@
 
 (defclass note ()
   ((name :initarg :name
-	 :initform #\C
 	 :accessor name
 	 :type character)
    (accidental :initarg :accidental
-	       :initform :natural
 	       :accessor accidental
 	       :type symbol)
    (octave :initarg :octave
-	   :initform 4
 	   :accessor octave
 	   :type integer)))
 
