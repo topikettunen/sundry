@@ -63,7 +63,6 @@
   (loop for octave from 0 to *maximum-octaves*
 	collect octave))
 
-
 ;;; Note CLOS representation
 
 (defclass note ()
