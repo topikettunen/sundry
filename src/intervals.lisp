@@ -88,7 +88,7 @@ CLOS object."
 
 (defun make-interval (name)
   (if (correct-interval-p name)
-      (let ((number-of-semitones (symbol-value (read-from-string (format nil"+~a+" name)))))
+      (let ((number-of-semitones (symbol-value (read-from-string (format nil "+~a+" name)))))
 	(make-instance 'interval
 		       :name name
 		       :number-of-semitones number-of-semitones))
