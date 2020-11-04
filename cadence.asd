@@ -6,7 +6,10 @@
   :components ((:module "src"
                 :components
                 ((:file "main")
+		 (:file "scales" :depends-on ("notes" "conditions"))
+		 (:file "intervals" :depends-on ("conditions" "utils"))
 		 (:file "notes" :depends-on ("conditions"))
+		 (:file "utils")
 		 (:file "conditions"))))
   :description "Music Theory Toolkit"
   :in-order-to ((test-op (test-op "cadence/tests"))))

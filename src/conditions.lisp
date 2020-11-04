@@ -1,11 +1,10 @@
 (in-package :cl-user)
 (defpackage cadence.conditions
   (:use :cl)
-  (:import-from :cadence.notes
-                :*maximum-octaves*)
   (:export :invalid-note
            :invalid-accidental
-	   :too-much-octaves))
+	   :too-much-octaves
+	   :invalid-interval))
 (in-package :cadence.conditions)
 
 (define-condition invalid-note (error)
@@ -25,3 +24,9 @@
 		    :reader maximum-octaves))
   (:report (lambda (condition stream)
 	     (format stream "Maximum octaves are set to ~a.~&" (maximum-octaves condition)))))
+
+(define-condition invalid-interval (error)
+  ((interval :initarg :interval
+	     :reader interval))
+  (:report (lambda (condition stream)
+	     (format stream "~a is an invalid interval.~&" (interval condition)))))
