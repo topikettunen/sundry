@@ -18,7 +18,7 @@ CL-USER> (sv:start :port 8080)
 When finished:
 
 ``` common-lisp
-(sv:stop)
+CL-USER> (sv:stop)
 ```
 
 ## Author
