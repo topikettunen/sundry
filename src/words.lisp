@@ -1,10 +1,10 @@
 (in-package :cl-user)
-(defpackage sv.words
+(defpackage vokaabeli.words
   (:use :cl)
   (:export :*api-key*
            :fetch-random-word
 	   :fetch-word-definition))
-(in-package :sv.words)
+(in-package :vokaabeli.words)
 
 (defconstant +wordnik-word+ "https://api.wordnik.com/v4/word.json")
 (defconstant +wordnik-words+ "https://api.wordnik.com/v4/words.json")
@@ -19,13 +19,13 @@
   (if (not *api-key*)
       (let ((params *random-word-params*))
 	(format nil "~a/~a?~a&~a&api_key=~a" root endpoint part-of-speech params *api-key*))
-      (format t nil "Oops... sv.words:*api-key* not set...")))
+      (format t nil "Oops... vokaabeli.words:*api-key* not set...")))
 
 (defun generate-word-definition-url (root endpoint)
   (if (not *api-key*)
       (let ((params *word-definition-params*))
 	(format nil "~a/~a?~a&api_key=~a" root endpoint params *api-key*))
-      (format t nil "Oops... sv.words:*api-key* not set...")))
+      (format t nil "Oops... vokaabeli.words:*api-key* not set...")))
 
 (defun fetch-random-word (part-of-speech)
   (let* ((url (generate-random-word-url +wordnik-words+

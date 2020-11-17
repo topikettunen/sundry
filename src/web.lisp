@@ -1,12 +1,12 @@
 (in-package :cl-user)
-(defpackage sv.web
+(defpackage vokaabeli.web
   (:use :cl
         :caveman2
-        :sv.config
-        :sv.view
-	:sv.words)
+        :vokaabeli.config
+        :vokaabeli.view
+	:vokaabeli.words)
   (:export :*web*))
-(in-package :sv.web)
+(in-package :vokaabeli.web)
 
 ;; for @route annotation
 (syntax:use-syntax :annot)

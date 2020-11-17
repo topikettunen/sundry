@@ -1,5 +1,5 @@
 (in-package :cl-user)
-(defpackage sv.config
+(defpackage vokaabeli.config
   (:use :cl)
   (:import-from :envy
                 :config-env-var
@@ -11,15 +11,14 @@
            :appenv
            :developmentp
            :productionp))
-(in-package :sv.config)
+(in-package :vokaabeli.config)
 
 (setf (config-env-var) "APP_ENV")
 
-(defparameter *application-root*   (asdf:system-source-directory :sv))
+(defparameter *application-root*   (asdf:system-source-directory :vokaabeli))
 (defparameter *static-directory*   (merge-pathnames #P"static/" *application-root*))
 (defparameter *template-directory* (merge-pathnames #P"templates/" *application-root*))
 
-;;; TODO
 (defconfig |development|
   '())
 

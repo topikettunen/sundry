@@ -1,19 +1,19 @@
-(ql:quickload :sv)
+(ql:quickload :vokaabeli)
 
-(defpackage sv.app
+(defpackage vokaabeli.app
   (:use :cl)
   (:import-from :lack.builder
                 :builder)
   (:import-from :ppcre
                 :scan
                 :regex-replace)
-  (:import-from :sv.web
+  (:import-from :vokaabeli.web
                 :*web*)
-  (:import-from :sv.config
+  (:import-from :vokaabeli.config
                 :config
                 :productionp
                 :*static-directory*))
-(in-package :sv.app)
+(in-package :vokaabeli.app)
 
 (builder
  (:static
@@ -29,11 +29,4 @@
      `(:backtrace
        :output ,(getf (config) :error-log))
      nil)
- :session
- (if (productionp)
-     nil
-     (lambda (app)
-       (lambda (env)
-         (let ((datafly:*trace-sql* t))
-           (funcall app env)))))
  *web*)

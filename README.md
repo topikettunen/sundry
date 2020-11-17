@@ -1,4 +1,4 @@
-# serendipitous-vocable
+# vokaabeli
 
 Simple web application for generating writing exercises powered by Common
 Lisp. Mainly done as a test for Common Lisp's capabilities in the web.
@@ -6,17 +6,17 @@ Lisp. Mainly done as a test for Common Lisp's capabilities in the web.
 ## Installation
 
 ``` common-lisp
-(ql:quickload :sv)
+(ql:quickload :vokaabeli)
 
-(setf sv.words:*api-key* "YOUR_WORDNIK_API_KEY")
+(setf vokaabeli.words:*api-key* "YOUR_WORDNIK_API_KEY")
 
-(sv:start :port 8080)
+(vokaabeli:start :port 8080)
 ```
 
 When finished:
 
 ``` common-lisp
-(sv:stop)
+(vokaabeli:stop)
 ```
 
 ## Author
