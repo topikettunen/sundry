@@ -1,33 +1,29 @@
 (in-package :cl-user)
 (defpackage vokaabeli.translate
-  (:use :cl))
+  (:use :cl
+	:vokaabeli.conditions)
+  (:export :*translate-api-key*
+	   :translate-to-fi))
 (in-package :vokaabeli.translate)
 
-(defun translate-to-target (q target key &optional source)
-  (let ((translate-api-url
-          (concatenate 'string
-                       "https://translation.googleapis.com/language/translate/v2?key="
-                       key)))
-    (if source
-	;; Refactor to dexador
-        `(flexi-streams:octets-to-string
-          (drakma:http-request ,translate-api-url
-                               :method :post
-                               :parameters '(("q" . ,q)
-                                             ("target" . ,target)
-                                             ("source" . ,source))))
-        `(flexi-streams:octets-to-string
-          (drakma:http-request ,translate-api-url
-                               :method :post
-                               :parameters '(("q" . ,q)
-                                             ("target" . ,target)))))))
+(defvar *translate-api-key* nil)
 
-;;; jsown for decoding
-(defun decode-output (q target key)
-  (with-input-from-string
-      (output (eval (translate-to-target q target key)))
-    (json:decode-json output)))
+(defun make-translate-uri (q)
+  (if *translate-api-key*
+      (quri:render-uri (quri:make-uri :scheme "https"
+				      :host "translation.googleapis.com"
+				      :path "/language/translate/v2"
+				      :query `(("key" . ,*translate-api-key*)
+					       ("q" . ,q)
+					       ;; In vokaabeli target is always fi and source is en.
+					       ("target" . "fi")
+					       ("source" . "en"))))
+      (error 'api-key-not-set :api-key *translate-api-key*)))
 
-;;; jsown for parsing
-(defun parse-translated-text (output)
-  (cdr (first (second (second (first output))))))
+(defun translate-to-fi (q)
+  (let* ((uri (make-translate-uri q))
+	 (response (dex:post uri)))
+    (jsown:val (first (jsown:val (jsown:val (jsown:parse response)
+					   "data")
+				"translations"))
+	      "translatedText")))

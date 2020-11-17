@@ -4,9 +4,3 @@
         :sv
         :prove))
 (in-package :sv-test)
-
-(plan nil)
-
-;; blah blah blah.
-
-(finalize)

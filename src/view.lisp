@@ -33,7 +33,7 @@
 
 (defpackage vokaabeli.djula
   (:use :cl)
-  (:import-from :sv.config
+  (:import-from :vokaabeli.config
                 :config
                 :appenv
                 :developmentp
@@ -41,4 +41,4 @@
   (:import-from :caveman2
                 :url-for))
 
-(setf djula:*djula-execute-package* (find-package :sv.djula))
+(setf djula:*djula-execute-package* (find-package :vokaabeli.djula))

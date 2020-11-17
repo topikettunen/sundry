@@ -6,17 +6,16 @@ Lisp. Mainly done as a test for Common Lisp's capabilities in the web.
 ## Installation
 
 ``` common-lisp
-(ql:quickload :vokaabeli)
-
-(setf vokaabeli.words:*api-key* "YOUR_WORDNIK_API_KEY")
-
-(vokaabeli:start :port 8080)
+CL-USER> (ql:quickload :vokaabeli)
+CL-USER> (setf vokaabeli.words:*wordnik-api-key* "YOUR_WORDNIK_API_KEY")
+CL-USER> (setf vokaabeli.translate:*translate-api-key* "YOUR_GOOGLE_API_KEY")
+CL-USER> (vokaabeli:start :port 8080)
 ```
 
 When finished:
 
 ``` common-lisp
-(vokaabeli:stop)
+CL-USER> (vokaabeli:stop)
 ```
 
 ## Author
