@@ -1,7 +1,7 @@
 (in-package :cl-user)
-(defpackage sv.view
+(defpackage vokaabeli.view
   (:use :cl)
-  (:import-from :sv.config
+  (:import-from :vokaabeli.config
                 :*template-directory*)
   (:import-from :caveman2
                 :*response*
@@ -13,7 +13,7 @@
                 :*djula-execute-package*)
   (:export :render
            :render-json))
-(in-package :sv.view)
+(in-package :vokaabeli.view)
 
 (djula:add-template-directory *template-directory*)
 
@@ -31,9 +31,9 @@
 ;;
 ;; Execute package definition
 
-(defpackage sv.djula
+(defpackage vokaabeli.djula
   (:use :cl)
-  (:import-from :sv.config
+  (:import-from :vokaabeli.config
                 :config
                 :appenv
                 :developmentp
@@ -41,4 +41,4 @@
   (:import-from :caveman2
                 :url-for))
 
-(setf djula:*djula-execute-package* (find-package :sv.djula))
+(setf djula:*djula-execute-package* (find-package :vokaabeli.djula))

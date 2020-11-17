@@ -1,14 +1,26 @@
 {% extends "layouts/default.html" %}
-{% block title %}Serendipitous Vocable{% endblock %}
+{% block title %}Vokaabeli{% endblock %}
 {% block content %}
 <div id="main">
-  <h1>Welcome to Serendipitous Vocable!</h1>
+  <h1>Welcome to Vokaabeli!</h1>
 
   <p>Write a small story based on this pair of randomly generated noun and adjective.</p>
   <p><i>{{ adjective }} {{ noun }}</i></p>
 
   <h3>Definitions</h3>
   <p>{{ adjective }} - {{ adj-def }}</p>
-  <p>{{ noun }} - {{ n-def }}</p>
+  <p>{{ noun }} - {{ noun-def }}</p>
+
+  <hr>
+
+  <h1>Tervetuloa Vokaabeliin!</h1>
+
+  <p>Kirjoita lyhyt tarina tästä sanaparista!</p>
+  <p><i>{{ adjective-fi }} {{ noun-fi }}</i></p>
+
+  <h3>Määritelmät</h3>
+  <p>{{ adjective-fi }} - {{ adjective-def-fi }}</p>
+  <p>{{ noun-fi }} - {{ noun-def-fi }}</p>
+
 </div>
 {% endblock %}

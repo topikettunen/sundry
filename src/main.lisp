@@ -1,16 +1,16 @@
 (in-package :cl-user)
-(defpackage sv
+(defpackage vokaabeli
   (:use :cl)
-  (:import-from :sv.config
+  (:import-from :vokaabeli.config
                 :config)
   (:import-from :clack
                 :clackup)
   (:export :start
            :stop))
-(in-package :sv)
+(in-package :vokaabeli)
 
 (defvar *appfile-path*
-  (asdf:system-relative-pathname :sv #P"app.lisp"))
+  (asdf:system-relative-pathname :vokaabeli #P"app.lisp"))
 
 (defvar *handler* nil)
 
