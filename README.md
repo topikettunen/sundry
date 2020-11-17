@@ -5,6 +5,8 @@ Lisp. Mainly done as a test for Common Lisp's capabilities in the web.
 
 ## Installation
 
+Clone repository under `local-projects` and:
+
 ``` common-lisp
 CL-USER> (ql:quickload :vokaabeli)
 CL-USER> (setf vokaabeli.words:*wordnik-api-key* "YOUR_WORDNIK_API_KEY")
