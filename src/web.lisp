@@ -38,7 +38,7 @@
 	      :adjective-def-fi ,adjective-def-fi
 	      :noun-def-fi ,noun-def-fi))))
 
-(defroute "/object-writing" ()
+(defroute "/objectwriting" ()
   (let* ((noun (fetch-random-word "noun"))
 	 (noun-def (fetch-word-definition noun))
 	 (noun-fi (translate-to-fi noun))
