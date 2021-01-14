@@ -4,7 +4,7 @@
 
 ## Usage
 
-Attempt to implement Go's subtle module in providing utilities for contanst-time
+Attempt to implement Go's subtle module in providing utilities for constant-time
 cryptographic implementations.
 
 ### Warning
