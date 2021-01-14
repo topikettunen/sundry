@@ -24,6 +24,7 @@
 	    (byte-eq (uint 8 0) 0)))
       0))
 
+;;; TODO
 (defun select (v x y)
   "Returns X if V equals 1 and y if V equals to 0. With other values of V,
 the behaviour is undefined"
@@ -45,6 +46,7 @@ the behaviour is undefined"
 	1
 	0)))
 
+;;; TODO
 (defun copy (v x y)
   "Copy contents of Y to X (which are lists of equal lenghts) if V equals to 1.
 If V equals to 0, x is left unchanged. With other values of V behaviour is undefined."
@@ -58,11 +60,13 @@ If V equals to 0, x is left unchanged. With other values of V behaviour is undef
 	  (setf x (set-nth x pos v))))
       (values x y))))
 
+;;; TODO
 (defun less-or-eq (x y)
   "Return 1 if X is smaller or equal to Y and 0 otherwise. Undefined behaviour if X or Y are negative"
   (let ((gtb (logand x (logxor y)))
 	(ltb (logand (logxor x) y)))
     ;; Fix undefined behaviour if x or y are smaller than (2^31 - 1)
+    ;; See: https://github.com/golang/go/pull/42687.
     (setq ltb (logior ltb (ash ltb -1)))
     (setq ltb (logior ltb (ash ltb -2)))
     (setq ltb (logior ltb (ash ltb -4)))

@@ -28,6 +28,12 @@
     (ok (= (eq* 1 1) 1))
     (ok (= (eq* 1 0) 0))))
 
+;;; TODO
+
+;; (deftest test-select
+;;   (testing "copy"
+;; 	   (ok ())))
+
 ;; (deftest test-copy
 ;;   (testing "copy"
 ;; 	   (ok ())))
